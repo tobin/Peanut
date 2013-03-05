@@ -75,6 +75,8 @@ pcolor(phi *180/pi, theta *180/pi, R);
 xlabel('longitude (\phi)');
 ylabel('colatitude (\theta)');
 shading interp
+set(gca, 'xtick', 90 * (0:4), ...
+         'ytick', 45 * (0:4));
 
 subplot(2,3,5);
 R = F_cross(phi, theta);
@@ -82,6 +84,8 @@ pcolor(phi *180/pi, theta *180/pi, R);
 xlabel('\phi');
 ylabel('\theta');
 shading interp
+set(gca, 'xtick', 90 * (0:4), ...
+         'ytick', 45 * (0:4));
 
 subplot(2,3,6);
 R = sqrt(F_plus(phi, theta).^2 + F_cross(phi, theta).^2);
@@ -89,9 +93,16 @@ pcolor(phi *180/pi, theta *180/pi, R);
 xlabel('\phi');
 ylabel('\theta');
 shading interp
+set(gca, 'xtick', 90 * (0:4), ...
+         'ytick', 45 * (0:4));
 
 %% Make PDF
 
 orient landscape
 print -dpdf peanut.pdf
+
+orient portrait
+set(gcf,'papersize',[11 8.5])
+set(gcf,'paperposition',[.25 .25 10.5 8])
+
 print -dpng peanut.png
